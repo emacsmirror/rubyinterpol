@@ -23,7 +23,7 @@
 
 ;;; Commentary:
 ;; This allows you to use the following syntax
-;; (r-interpol "This is a test of variable #{foo} and #{bar}")
+;; (ris "This is a test of variable #{foo} and #{bar}")
 ;; Equivalent to (format "This is a test of variable %s and %s" foo bar)
 ;;
 
@@ -31,7 +31,7 @@
 
 ;;; Code:
 
-(defun ri-vars (str)
+(defun ris-vars (str)
   (let ((result nil))
     (with-temp-buffer
       (insert str)
@@ -44,11 +44,11 @@
                result)))
       (reverse result))))
 
-(defun ri-format (str)
+(defun ris-format (str)
   (replace-regexp-in-string "#{.[^#]*}" "%s" str))
 
-(defun r-interpol (str)
+(defun ris (str)
   "Ruby like interposition for strings"
-  (apply #'format (ri-format str) (mapcar #'symbol-value (ri-vars str))))
+  (apply #'format (ris-format str) (mapcar #'symbol-value (ris-vars str))))
 
 (provide 'rubyinterpol)
