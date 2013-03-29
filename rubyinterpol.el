@@ -52,3 +52,5 @@
   (apply #'format (ris-format str) (mapcar #'symbol-value (ris-vars str))))
 
 (provide 'rubyinterpol)
+
+;;; rubyinterpol.el ends here
