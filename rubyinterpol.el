@@ -55,6 +55,10 @@
   "Ruby like interposition for strings using a hash of variables and values"
   (apply #'format (ris-format str) (mapcar (lambda (arg) (gethash (format "%s" arg) rish-hash)) (ris-vars str))))
 
+(defun ria (str ri-alist)
+  "Ruby like interposition for strings using an alist of variables/values"
+  (apply #'format (ris-format str) (mapcar (lambda (arg) (aget ri-alist arg)) (ris-vars str))))
+
 (provide 'rubyinterpol)
 
 ;;; rubyinterpol.el ends here
