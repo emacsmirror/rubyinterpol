@@ -6,7 +6,7 @@
 
 ;; Author: Jaime Fournier <jaimef@linbsd.org>
 ;; Keywords: Ruby-like String Interpolation
-;; Version: 0.1
+;; Version: 0.2
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -50,6 +50,10 @@
 (defun ris (str)
   "Ruby like interposition for strings"
   (apply #'format (ris-format str) (mapcar #'symbol-value (ris-vars str))))
+
+(defun rish (str rish-hash)
+  "Ruby like interposition for strings using a hash of variables and values"
+  (apply #'format (ris-format str) (mapcar (lambda (arg) (gethash (format "%s" arg) rish-hash)) (ris-vars str))))
 
 (provide 'rubyinterpol)
 
